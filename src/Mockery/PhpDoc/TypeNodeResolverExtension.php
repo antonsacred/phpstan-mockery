@@ -36,6 +36,10 @@ class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExten
 		$types = $this->typeNodeResolver->resolveMultiple($typeNode->types, $nameScope);
 		foreach ($types as $type) {
 			$classNames = $type->getObjectClassNames();
+			file_put_contents('/tmp/TypeNodeResolverExtension', json_encode($classNames). PHP_EOL, FILE_APPEND);
+			file_put_contents('/tmp/TypeNodeResolverExtension', json_encode($types). PHP_EOL, FILE_APPEND);
+			file_put_contents('/tmp/TypeNodeResolverExtension', PHP_EOL, FILE_APPEND);
+
 			if (count($classNames) !== 1) {
 				continue;
 			}
